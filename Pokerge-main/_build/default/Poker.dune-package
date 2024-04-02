@@ -1,0 +1,131 @@
+(lang dune 3.7)
+(name Poker)
+(sections (lib .) (libexec .) (doc ../../doc/Poker))
+(files
+ (lib
+  (META
+   bot.ml
+   bot.mli
+   card.ml
+   card.mli
+   command.ml
+   command.mli
+   dune-package
+   main.ml
+   opam
+   player.ml
+   player.mli
+   poker.a
+   poker.cma
+   poker.cmi
+   poker.cmt
+   poker.cmx
+   poker.cmxa
+   poker.ml
+   poker__Bot.cmi
+   poker__Bot.cmt
+   poker__Bot.cmti
+   poker__Bot.cmx
+   poker__Card.cmi
+   poker__Card.cmt
+   poker__Card.cmti
+   poker__Card.cmx
+   poker__Command.cmi
+   poker__Command.cmt
+   poker__Command.cmti
+   poker__Command.cmx
+   poker__Main.cmi
+   poker__Main.cmt
+   poker__Main.cmx
+   poker__Player.cmi
+   poker__Player.cmt
+   poker__Player.cmti
+   poker__Player.cmx
+   poker__Preflop.cmi
+   poker__Preflop.cmt
+   poker__Preflop.cmti
+   poker__Preflop.cmx
+   poker__Rounds.cmi
+   poker__Rounds.cmt
+   poker__Rounds.cmti
+   poker__Rounds.cmx
+   poker__State.cmi
+   poker__State.cmt
+   poker__State.cmti
+   poker__State.cmx
+   poker__Ui.cmi
+   poker__Ui.cmt
+   poker__Ui.cmti
+   poker__Ui.cmx
+   preflop.ml
+   preflop.mli
+   rounds.ml
+   rounds.mli
+   state.ml
+   state.mli
+   ui.ml
+   ui.mli))
+ (libexec (poker.cmxs))
+ (doc (README.md)))
+(library
+ (name Poker)
+ (kind normal)
+ (archives (byte poker.cma) (native poker.cmxa))
+ (plugins (byte poker.cma) (native poker.cmxs))
+ (native_archives poker.a)
+ (requires ANSITerminal)
+ (main_module_name Poker)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name poker)
+     (visibility public)
+     (kind alias)
+     (source (path Poker) (impl (path poker.ml-gen))))
+    (name Poker)
+    (modules
+     (module
+      (obj_name poker__Bot)
+      (visibility public)
+      (source (path Bot) (intf (path bot.mli)) (impl (path bot.ml))))
+     (module
+      (obj_name poker__Card)
+      (visibility public)
+      (source (path Card) (intf (path card.mli)) (impl (path card.ml))))
+     (module
+      (obj_name poker__Command)
+      (visibility public)
+      (source
+       (path Command)
+       (intf (path command.mli))
+       (impl (path command.ml))))
+     (module
+      (obj_name poker__Main)
+      (visibility public)
+      (source (path Main) (impl (path main.ml))))
+     (module
+      (obj_name poker__Player)
+      (visibility public)
+      (source (path Player) (intf (path player.mli)) (impl (path player.ml))))
+     (module
+      (obj_name poker__Preflop)
+      (visibility public)
+      (source
+       (path Preflop)
+       (intf (path preflop.mli))
+       (impl (path preflop.ml))))
+     (module
+      (obj_name poker__Rounds)
+      (visibility public)
+      (source (path Rounds) (intf (path rounds.mli)) (impl (path rounds.ml))))
+     (module
+      (obj_name poker__State)
+      (visibility public)
+      (source (path State) (intf (path state.mli)) (impl (path state.ml))))
+     (module
+      (obj_name poker__Ui)
+      (visibility public)
+      (source (path Ui) (intf (path ui.mli)) (impl (path ui.ml))))))
+   (wrapped true))))
